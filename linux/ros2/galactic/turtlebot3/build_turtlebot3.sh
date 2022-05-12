@@ -4,8 +4,7 @@ ROS2_DIR=~/ros2_galactic
 TB3_ROS2_WS_DIR=~/tb3_ws2
 TB3_REPOS_FILE_NAME=turtlebot3.repos
 TB3_REPOS_FILE_PATH=$BASEDIR/$TB3_REPOS_FILE_NAME
-TB3_SCRIPT_FILE_NAME=$(basename "$0")
-TB3_SCRIPT_FILE_PATH=$BASEDIR/$TB3_SCRIPT_FILE_NAME
+TB3_BUILD_SCRIPT_FILE_NAME=$(basename "$0")
 
 function check_result()
 {
@@ -24,7 +23,7 @@ function get_tb3_ros2()
 {
   mkdir -p $TB3_ROS2_WS_DIR/src
   cp $TB3_REPOS_FILE_PATH $TB3_ROS2_WS_DIR
-  cp $TB3_SCRIPT_FILE_PATH $TB3_ROS2_WS_DIR
+  cp $BASEDIR/*.sh $TB3_ROS2_WS_DIR
   cd $TB3_ROS2_WS_DIR
   vcs import src < $TB3_REPOS_FILE_NAME
 }
