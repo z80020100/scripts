@@ -1,0 +1,36 @@
+# 2022/05/13
+# https://raw.githubusercontent.com/ROBOTIS-GIT/turtlebot3/foxy-devel/turtlebot3.repos
+repositories:
+  ROBOTIS-GIT/turtlebot3:
+    type: git
+    url: https://github.com/ROBOTIS-GIT/turtlebot3.git
+    version: 2.1.1 # foxy-devel
+  ROBOTIS-GIT/turtlebot3_msgs:
+    type: git
+    url: https://github.com/ROBOTIS-GIT/turtlebot3_msgs.git
+    version: 2.2.1 # foxy-devel
+  ROBOTIS-GIT/turtlebot3_simulations:
+    type: git
+    url: https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git
+    version: 2.2.3 # foxy-devel
+  ROBOTIS-GIT/DynamixelSDK:
+    type: git
+    url: https://github.com/ROBOTIS-GIT/DynamixelSDK.git
+    version: 3.7.40 # foxy-devel
+  ROBOTIS-GIT/hls_lfcd_lds_driver:
+    type: git
+    url: https://github.com/ROBOTIS-GIT/hls_lfcd_lds_driver.git
+    version: 4c81d3b3a70320750fbb71e3937ff0b4b5664a1d # foxy-devel
+# Customization for dependencies
+  ros-simulation/gazebo_ros_pkgs:
+    type: git
+    url: https://github.com/ros-simulation/gazebo_ros_pkgs.git
+    version: 3.5.0 # foxy
+  ros-perception/image_common.git:
+    type: git
+    url: https://github.com/ros-perception/image_common.git
+    version: 2.3.0 # foxy
+  ros-perception/vision_opencv:
+    type: git
+    url: https://github.com/ros-perception/vision_opencv.git
+    version: 2.2.1 # ros2
