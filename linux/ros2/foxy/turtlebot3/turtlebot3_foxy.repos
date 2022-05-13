@@ -34,7 +34,7 @@ repositories:
     type: git
     url: https://github.com/ros-perception/vision_opencv.git
     version: 2.2.1 # ros2
-# Customization for SLAM
+# Customization for SLAM (Cartographer)
   ros2/cartographer:
     type: git
     url: https://github.com/ros2/cartographer.git
@@ -51,7 +51,12 @@ repositories:
     type: git
     url: https://github.com/ros-perception/pcl_msgs.git
     version: 1.0.0 # ros2
-# Customization for navigation
+# Customization for SLAM (Slam Toolbox)
+  SteveMacenski/slam_toolbox:
+    type: git
+    url: https://github.com/SteveMacenski/slam_toolbox.git
+    version: 2.4.1  # foxy-devel
+# Customization for navigation (Nav2)
   ros-planning/navigation2:
     type: git
     url: https://github.com/ros-planning/navigation2.git
