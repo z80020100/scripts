@@ -51,7 +51,7 @@ function main()
 {
   create_resouces
   check_result get_tb3_ros2
-  # check_result copy_maps
+  check_result copy_maps
   check_result build_tb3_ros2
 }
 
