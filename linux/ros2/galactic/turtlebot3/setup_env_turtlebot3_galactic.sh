@@ -34,6 +34,7 @@ function get_tb3_ros2()
 function install_tb3_ros2_dependencies()
 {
   cd $TB3_ROS2_WS_DIR
+  export ROS_PYTHON_VERSION=3
   rosdep install --from-paths src --ignore-src -r -y
 }
 
