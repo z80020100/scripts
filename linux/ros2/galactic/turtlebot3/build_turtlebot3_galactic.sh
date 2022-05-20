@@ -44,7 +44,7 @@ function build_tb3_ros2()
 {
   cd $TB3_ROS2_WS_DIR
   source $ROS2_DIR/install/local_setup.bash
-  colcon build --symlink-install
+  colcon build --merge-install
 }
 
 function main()
