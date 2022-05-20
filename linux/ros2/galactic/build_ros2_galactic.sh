@@ -31,7 +31,7 @@ function get_ros2()
 function build_ros2()
 {
   cd $ROS2_DIR
-  colcon build --symlink-install
+  colcon build --merge-install
 }
 
 function main()
