@@ -1,3 +1,3 @@
 #!/bin/bash
 
-sudo asitop
+pip install -U asitop
