@@ -1,3 +1,3 @@
 #!/bin/bash
 
-systemctl restart smbd.service
+sudo systemctl restart smbd.service
