@@ -1,10 +1,6 @@
 #!/bin/bash
-BASEDIR=$(dirname "$0")
+
 ROS2_DIR=~/ros2_galactic
-ROS2_REPOS_FILE_NAME=ros2_galactic.repos
-ROS2_REPOS_FILE_PATH=$BASEDIR/$ROS2_REPOS_FILE_NAME
-ROS2_SCRIPT_FILE_NAME=$(basename "$0")
-ROS2_SCRIPT_FILE_PATH=$BASEDIR/$ROS2_SCRIPT_FILE_NAME
 
 function check_result()
 {
@@ -19,15 +15,6 @@ function check_result()
   fi
 }
 
-function get_ros2()
-{
-  mkdir -p $ROS2_DIR/src
-  cp $ROS2_REPOS_FILE_PATH $ROS2_DIR
-  cp $ROS2_SCRIPT_FILE_PATH $ROS2_DIR
-  cd $ROS2_DIR
-  vcs import src < $ROS2_REPOS_FILE_NAME
-}
-
 function build_ros2()
 {
   cd $ROS2_DIR
@@ -36,7 +23,6 @@ function build_ros2()
 
 function main()
 {
-  check_result get_ros2
   check_result build_ros2
 }
 
