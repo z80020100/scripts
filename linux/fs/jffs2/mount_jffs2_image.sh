@@ -33,7 +33,7 @@ function check_args() {
 
 function init_driver() {
   sudo modprobe mtdblock
-  sudo modprobe mtdram
+  sudo modprobe mtdram total_size=32768
 }
 
 function mount_image() {
