@@ -12,6 +12,7 @@ TARGET_PASSWD=${1:-$DEFAULT_PASSWD}
 TARGET_SHADOW=${2:-$DEFAULT_SHADOW}
 
 UNSHADOWED_FILE="unshadowed.txt"
+RECORD_FILE="john.rec"
 RESULT_FILE="john.pot"
 
 function check_result() {
@@ -30,12 +31,17 @@ function prepare() {
   cd $JOHN_DIR/run
   echo "Target passwd: $TARGET_PASSWD"
   echo "Target shadow: $TARGET_SHADOW"
-  sudo ./unshadow $TARGET_PASSWD $TARGET_SHADOW > $UNSHADOWED_FILE
+  sudo ./unshadow $TARGET_PASSWD $TARGET_SHADOW >$UNSHADOWED_FILE
 }
 
 function john_brute_force() {
   cd $JOHN_DIR/run
   ./john $UNSHADOWED_FILE
+}
+
+function john_restore() {
+  cd $JOHN_DIR/run
+  ./john --restore
 }
 
 function show_result() {
@@ -45,8 +51,14 @@ function show_result() {
 }
 
 function main() {
-  check_result prepare
-  check_result john_brute_force
+  if [ ! -f "$JOHN_DIR/run/$RECORD_FILE" ]; then
+    echo "Start new session"
+    check_result prepare
+    check_result john_brute_force
+  else
+    echo "Restore session"
+    check_result john_restore
+  fi
   check_result show_result
 }
 
