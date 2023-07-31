@@ -12,6 +12,7 @@ TARGET_PASSWD=${1:-$DEFAULT_PASSWD}
 TARGET_SHADOW=${2:-$DEFAULT_SHADOW}
 
 UNSHADOWED_FILE="unshadowed.txt"
+RECORD_FILE="john.rec"
 RESULT_FILE="john.pot"
 
 function check_result() {
@@ -50,8 +51,7 @@ function show_result() {
 }
 
 function main() {
-  # Check if john.rec exists
-  if [ ! -f "$JOHN_DIR/run/john.rec" ]; then
+  if [ ! -f "$JOHN_DIR/run/$RECORD_FILE" ]; then
     echo "Start new session"
     check_result prepare
     check_result john_brute_force
