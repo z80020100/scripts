@@ -1,0 +1,2 @@
+CT_NG_INSTALL_DIR=$HOME/.crosstool-ng
+export PATH=$CT_NG_INSTALL_DIR/bin:$PATH
