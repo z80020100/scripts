@@ -1,3 +1,7 @@
 #!/bin/bash
 
-sudo sed -i -- '2s/^/auth       sufficient     pam_tid.so\n/' /etc/pam.d/sudo
+sudo tee /etc/pam.d/sudo_local > /dev/null <<EOF
+# sudo_local: local config file which survives system update and is included for sudo
+# uncomment following line to enable Touch ID for sudo
+auth       sufficient     pam_tid.so
+EOF
