@@ -4,6 +4,7 @@ ROS2_DIR=~/ros2_galactic
 TB3_ROS2_WS_DIR=~/tb3_galactic_ws2
 TB3_REPOS_FILE_NAME=turtlebot3_galactic.repos
 TB3_REPOS_FILE_PATH=$BASEDIR/$TB3_REPOS_FILE_NAME
+SETUP_COMPLETE_FLAG=$TB3_ROS2_WS_DIR/.setup_complete
 
 function check_result()
 {
@@ -29,4 +30,27 @@ function get_tb3_ros2()
 {
   cd $TB3_ROS2_WS_DIR
   vcs import src < $TB3_REPOS_FILE_NAME
+}
+
+function mark_setup_complete()
+{
+  touch $SETUP_COMPLETE_FLAG
+}
+
+function is_setup_complete()
+{
+  if [ -f "$SETUP_COMPLETE_FLAG" ]; then
+    return 0
+  fi
+  return 1
+}
+
+function check_setup_status()
+{
+  if is_setup_complete; then
+    echo "Environment is already set up"
+    return 0
+  fi
+  echo "Environment setup is needed"
+  return 1
 }
