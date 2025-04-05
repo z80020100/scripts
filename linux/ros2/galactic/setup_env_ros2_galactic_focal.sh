@@ -51,8 +51,11 @@ function install_dev_ros_tools()
     python3-vcstool \
     wget
 
-  # install some pip packages needed for testing
+  # install specific versions of required packages
   python3 -m pip install -U \
+    'setuptools<60.0.0' \
+    'importlib_metadata==4.6.4' \
+    'packaging>=20.0' \
     flake8-blind-except \
     flake8-builtins \
     flake8-class-newline \
@@ -63,8 +66,7 @@ function install_dev_ros_tools()
     flake8-quotes \
     pytest-repeat \
     pytest-rerunfailures \
-    pytest \
-    setuptools
+    pytest
 }
 
 function get_ros2()
