@@ -20,8 +20,9 @@ function build_tb3_ros2()
 
 function main()
 {
-  create_resouces
-  check_result get_tb3_ros2
+  # Setup environment if needed
+  check_setup_status || check_result $SCRIPT_DIR/setup_env_turtlebot3_galactic.sh
+
   check_result copy_maps
   check_result build_tb3_ros2
 }
