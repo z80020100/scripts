@@ -21,7 +21,7 @@ function check_result()
   fi
 }
 
-function create_resouces()
+function create_resources()
 {
   mkdir -p $TB3_ROS2_WS_DIR/src
   cp $TB3_REPOS_FILE_PATH $TB3_ROS2_WS_DIR
@@ -49,7 +49,7 @@ function build_tb3_ros2()
 
 function main()
 {
-  create_resouces
+  create_resources
   check_result get_tb3_ros2
   check_result copy_maps
   check_result build_tb3_ros2
