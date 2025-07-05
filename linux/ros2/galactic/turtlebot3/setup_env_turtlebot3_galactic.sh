@@ -13,7 +13,7 @@ function main()
 {
   check_setup_status && exit 0
 
-  create_resouces
+  create_resources
   check_result get_tb3_ros2
   check_result install_tb3_ros2_dependencies
   mark_setup_complete
