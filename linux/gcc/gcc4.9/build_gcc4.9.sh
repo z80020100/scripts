@@ -38,6 +38,14 @@ create_obj_dir() {
   mkdir -p $GCC_OBJ_DIR
 }
 
+check_source_exists() {
+  if [ ! -d "$GCC_SRC_DIR" ] || [ ! -f "$GCC_SRC_DIR/configure" ]; then
+    echo "GCC source code not found in $GCC_SRC_DIR"
+    echo "Please run get_gcc4.9_source.sh first to download the source code"
+    exit 1
+  fi
+}
+
 clean_build() {
   if [ -d "$GCC_OBJ_DIR" ]; then
     echo "Cleaning previous build cache"
@@ -81,6 +89,7 @@ function build() {
 }
 
 function main() {
+  check_result check_source_exists
   check_result clean_build
   check_result create_obj_dir
   check_result apply_patch
