@@ -37,6 +37,13 @@ create_obj_dir() {
   mkdir -p $GCC_OBJ_DIR
 }
 
+clean_build() {
+  if [ -d "$GCC_OBJ_DIR" ]; then
+    echo "Cleaning previous build cache"
+    rm -rf $GCC_OBJ_DIR/*
+  fi
+}
+
 function apply_patch() {
   if [ -f "$PATCH_APPLIED_FILE" ]; then
     echo "Patch has been applied"
@@ -73,6 +80,7 @@ function build() {
 }
 
 function main() {
+  check_result clean_build
   check_result create_obj_dir
   check_result apply_patch
   check_result download_prerequisites
@@ -81,7 +89,7 @@ function main() {
 
   END_TIME=$(date +%s)
   ELAPSED_TIME=$((END_TIME - START_TIME))
-  echo -e "\033[42;37mBuild completed successfully in ${ELAPSED_TIME} seconds\033[0m"
+  echo -e "\033[1;42mBuild completed successfully in ${ELAPSED_TIME} seconds\033[0m"
 }
 
 main
