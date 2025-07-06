@@ -14,6 +14,7 @@ GCC_TARGET_VERSION="4.9"
 GCC_DIR=$BUILD_DIR/gcc$GCC_TARGET_VERSION
 GCC_SRC_DIR=$GCC_DIR/src
 GCC_OBJ_DIR=$GCC_DIR/obj
+INSTALL_PREFIX="/opt/gcc-$GCC_TARGET_VERSION"
 # Use a file here to indicate that the patch has been applied
 PATCH_APPLIED_FILE=$GCC_SRC_DIR/.patch_applied
 PREREQUISITES_DOWNLOADED_FILE=$GCC_SRC_DIR/.prerequisites_downloaded
@@ -71,7 +72,7 @@ function download_prerequisites() {
 function configure() {
   # Reference: ../src/configure -v --with-pkgversion='Ubuntu 11.3.0-1ubuntu1~22.04' --with-bugurl=file:///usr/share/doc/gcc-11/README.Bugs --enable-languages=c,ada,c++,go,d,fortran,objc,obj-c++,m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-11 --program-prefix=aarch64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-libquadmath --disable-libquadmath-support --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --enable-fix-cortex-a53-843419 --disable-werror --enable-checking=release --build=aarch64-linux-gnu --host=aarch64-linux-gnu --target=aarch64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2
   cd $GCC_OBJ_DIR
-  ../src/configure -v --enable-languages=c,c++ --prefix=/usr --program-suffix=-4.9 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-libquadmath --disable-libquadmath-support --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-checking=release --enable-link-serialization=2
+  ../src/configure -v --enable-languages=c,c++ --prefix=$INSTALL_PREFIX --program-suffix=-4.9 --enable-shared --enable-linker-build-id --libexecdir=$INSTALL_PREFIX/lib --without-included-gettext --enable-threads=posix --libdir=$INSTALL_PREFIX/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-libquadmath --disable-libquadmath-support --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-checking=release --enable-link-serialization=2
 }
 
 function build() {
