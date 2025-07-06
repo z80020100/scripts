@@ -2,6 +2,9 @@
 
 # https://gcc.gnu.org/install/download.html
 
+# Global variable for timing
+START_TIME=$(date +%s)
+
 BUILD_DIR=$HOME/build
 SCRIPT_PATH=$(
   cd "$(dirname "$0")"
@@ -21,6 +24,9 @@ function check_result() {
   printf "$* "
   if [ "$ERR" != "0" ]; then
     echo -e "\033[47;31m [ERROR] $ERR \033[0m"
+    END_TIME=$(date +%s)
+    ELAPSED_TIME=$((END_TIME - START_TIME))
+    echo -e "\033[41;37mBuild failed after ${ELAPSED_TIME} seconds\033[0m"
     exit 1
   else
     echo -e "\033[1;42m [OK] \033[0m"
@@ -72,6 +78,10 @@ function main() {
   check_result download_prerequisites
   check_result configure
   check_result build
+
+  END_TIME=$(date +%s)
+  ELAPSED_TIME=$((END_TIME - START_TIME))
+  echo -e "\033[42;37mBuild completed successfully in ${ELAPSED_TIME} seconds\033[0m"
 }
 
 main
