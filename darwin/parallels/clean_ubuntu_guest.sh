@@ -15,7 +15,7 @@ In the guest the script does the steps below. It does steps 5 to 7 for root and 
   3. Remove the crash reports in /var/crash.
   4. Remove the disabled snap revisions.
   5. Remove the shell, less, vim, and recent-file history.
-  6. Remove ~/.claude and ~/.claude.json. They hold the Claude Code login credentials, sessions, memory, and settings.
+  6. Remove ~/.claude and ~/.claude.json. They hold the Claude Code login credentials, sessions, memory, and settings. Then remove the old Claude Code releases.
   7. Remove all of ~/.codex except the Codex program in ~/.codex/packages. Then remove the old Codex releases.
   8. Run fstrim on all mounted file systems.
 
@@ -93,6 +93,11 @@ for home in /root /home/*; do
 home=$1
 rm -rf "$home"/{.bash_history,.zsh_history,.lesshst,.viminfo,.local/share/recently-used.xbel} \
     "$home"/.claude "$home"/.claude.json*
+# The Claude Code installer keeps old releases after an update. A custom launcher can need any release.
+versions="$home"/.local/share/claude/versions
+if current=$(readlink -e "$home"/.local/bin/claude) && [ "$(dirname "$current")" = "$versions" ]; then
+    find "$versions" -mindepth 1 -maxdepth 1 ! -name "$(basename "$current")" -exec rm -rf {} +
+fi
 # ~/.codex/packages holds the Codex program itself.
 [ ! -d "$home"/.codex ] ||
     find "$home"/.codex -mindepth 1 -maxdepth 1 ! -name packages -exec rm -rf {} +
